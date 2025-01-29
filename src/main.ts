@@ -4,7 +4,6 @@ import App from './App.vue'
 import router from './router'
 
 // Importer les fichiers Bootstrap via Sass
-import './styles/main.scss'  // Ce fichier contient l'import de bootstrap/scss/bootstrap
 
 // Importer les styles globaux de ton projet
 import './style.css'

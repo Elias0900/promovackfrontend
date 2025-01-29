@@ -1,19 +1,23 @@
 import { AuthControllerApi } from '../api'; // Importez l'API générée
-import type { User } from '../api/api';
-import {AuthResponse} from "../types/auth"; // Importez les types générés
+import { AuthResponse } from "../types/auth"; // Importez les types générés
 
 // Créez une instance de l'API
 const authApi = new AuthControllerApi();
 
 export const authService = {
-  async login(request: { email: string; password: string }): Promise<User> {
+  async login(request: { email: string; password: string }): Promise<AuthResponse> {
     try {
       // Utilisez la méthode `login` de l'API générée
       const response = await authApi.login(request);
-      if (response.data.token) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+
+      // Vérifier et gérer le type de `response.data` en fonction du type AuthResponse
+      const authResponse = response.data as AuthResponse;
+
+      if (authResponse.token) {
+        localStorage.setItem('user', JSON.stringify(authResponse));
       }
-      return response.data;
+
+      return authResponse;
     } catch (error) {
       console.error('Login failed:', error);
       throw error;

@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Bienvenue sur l'application</h1>
     <p v-if="authStore.user">
-      Connecté en tant que {{ authStore.user.username }}
+      Connecté en tant que {{ authStore.user.nom }} {{authStore.user.prenom}}
     </p>
     <p v-else>
       Veuillez vous <router-link to="/login">connecter</router-link> ou vous <router-link to="/register">inscrire</router-link>
